@@ -1,11 +1,17 @@
 import { defineStore } from 'pinia'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 
 export const useHabitStore = defineStore('habitStore', {
     state: () => ({
-        habits: []
+        habits: [],
     }),
     actions: {
+        async fetchHabits() {
+            const { $db } = useNuxtApp()
+            const snapshot = await getDocs(collection($db, 'habits'))
+            this.habits = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        },
+
         async addHabit(name) {
             const { $db } = useNuxtApp()
 
