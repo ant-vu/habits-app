@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { addDoc, collection, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import { addDoc, collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore'
 
 export const useHabitStore = defineStore('habitStore', {
     state: () => ({
@@ -23,6 +23,16 @@ export const useHabitStore = defineStore('habitStore', {
 
             const docRef = await addDoc(collection($db, 'habits'), habit)
             this.habits.push({ id: docRef.id, ...habit })
+        },
+
+        async updateHabit(id, updates) {
+            const { $db } = useNuxtApp()
+            const docRef = doc($db, 'habits', id)
+            await updateDoc(docRef, updates)
+            const index = this.habits.findIndex((habit) => habit.id === id)
+            if (index !== -1) {
+                this.habits[index] = { ...this.habits[index], ...updates }
+            }
         },
 
         async deleteHabit(id) {
