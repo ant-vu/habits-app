@@ -24,8 +24,8 @@ npm run dev
 
 ## **License**
 
-Portfolio is released under the MIT License. See the **[LICENSE](https://github.com/ant-vu/habits-app/blob/master/LICENSE)** file for details.
+Habit Tracker is released under the MIT License. See the **[LICENSE](https://github.com/ant-vu/habits-app/blob/master/LICENSE)** file for details.
 
 ## **Author**
 
-Portfolio was created by **[Anthony Vu](https://github.com/ant-vu)**.
+Habit Tracker was created by **[Anthony Vu](https://github.com/ant-vu)**.
